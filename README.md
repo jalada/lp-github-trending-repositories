@@ -1,6 +1,7 @@
-# Hello World Sample Publication
+# GitHub Trending Repositories
 
-This is the sample 'Hello World' publication for Little Printer, using Ruby and Sinatra. It has been prepared exclusively for the BERG Hackday, and should be treated as 'beta', and subject to change before launch.
+This Little Printer publication tells you the top trending GitHub repository,
+but only if it’s changed since you last were told about it.
 
 ----
 
