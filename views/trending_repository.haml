@@ -1,0 +1,30 @@
+%html
+  %head
+    %title GitHub Trending Repository
+    %link{href: url("/application.css"), rel: "stylesheet"}
+  %body
+    %img#logo{src: url("logo.png")}
+
+    #copy
+
+      %h2#owner-and-repo
+        #{@owner} / #{@repository}
+
+      .meta
+        .stars
+          %img{src: url("star.png")}
+          = @stars
+
+        .forks
+          %img{src: url("fork.png")}
+          = @forks
+
+      %p.description
+        = @description
+        Written in #{@language}.
+
+    #divider
+
+    %script{src: url("/js/FitText.js")}
+    %script{src: url("/js/js.js")}
+
