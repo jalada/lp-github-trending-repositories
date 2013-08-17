@@ -1,7 +1,7 @@
 {
   "owner_email" : "david@jalada.co.uk",
   "publication_api_version":"1.0",
-  "name": "GitHub trending repositories",
+  "name": "GitHub top trending repository",
   "description": "Keep up with the latest top trending repository on GitHub.",
   "delivered_on": "every day, but only when there is a new top trending repository.",
   "send_timezone_info": false,
