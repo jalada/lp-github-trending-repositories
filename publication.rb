@@ -50,8 +50,8 @@ end
 #
 get '/sample/?' do
 
-  @owner = "blakeperdue"
-  @repository = "ios7-wireframe-kit"
+  @owner = "mozilla"
+  @repository = "brick"
   @stars = 308
   @forks = 42
   @description = "UI Web Components for Mobile Web Apps."
