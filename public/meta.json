@@ -3,7 +3,7 @@
   "publication_api_version":"1.0",
   "name": "GitHub trending repositories",
   "description": "Keep up with the latest top trending repository on GitHub.",
-  "delivered_on": "day, only when there is a new top trending repository",
+  "delivered_on": "every day, but only when there is a new top trending repository.",
   "send_timezone_info": false,
   "send_delivery_count": false,
   "external_configuration": false,
