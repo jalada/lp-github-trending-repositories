@@ -1,13 +1,34 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
+      mail (~> 2.5.3)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
+      erubis (~> 2.7.0)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    activesupport (4.0.0)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    atomic (1.1.13)
     backports (3.3.3)
+    builder (3.1.4)
     daemons (1.1.9)
+    erubis (2.7.0)
     ethon (0.6.0)
       ffi (>= 1.3.0)
       mime-types (~> 1.18)
     eventmachine (1.0.3)
+    exception_notification (4.0.0)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     faraday_middleware (0.9.0)
@@ -16,9 +37,24 @@ GEM
     haml (4.0.3)
       tilt
     hashie (2.0.5)
+    i18n (0.6.5)
     json (1.8.0)
+    mail (2.5.4)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mailcatcher (0.2.4)
+      eventmachine
+      haml
+      i18n
+      json
+      mail
+      sinatra
+      skinny (>= 0.1.2)
+      sqlite3-ruby
+      thin
     mime-types (1.24)
     mini_portile (0.5.1)
+    minitest (4.7.5)
     multi_json (1.7.9)
     multipart-post (1.2.0)
     netrc (0.7.7)
@@ -31,6 +67,7 @@ GEM
       hashie (~> 2.0)
       multi_json (~> 1.3)
       netrc (~> 0.7.7)
+    polyglot (0.3.3)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -41,29 +78,44 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    sinatra-contrib (1.4.0)
+    sinatra-contrib (1.4.1)
       backports (>= 2.0)
-      eventmachine
+      multi_json
       rack-protection
       rack-test
-      sinatra (~> 1.4.2)
+      sinatra (~> 1.4.0)
       tilt (~> 1.3)
     sinatra-reloader (1.0)
       sinatra-contrib
+    skinny (0.2.3)
+      eventmachine (~> 1.0.0)
+      thin (~> 1.5.0)
+    sqlite3 (1.3.8)
+    sqlite3-ruby (1.3.3)
+      sqlite3 (>= 1.3.3)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
+    thread_safe (0.1.2)
+      atomic
     tilt (1.4.1)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
     typhoeus (0.6.4)
       ethon (~> 0.6.0)
+    tzinfo (0.3.37)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
+  exception_notification
   haml
   json
+  mailcatcher
   nokogiri
   octokit
   sass

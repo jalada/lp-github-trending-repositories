@@ -21,7 +21,8 @@
 
       %p.description
         = @description
-        Written in #{@language}.
+        - if @language
+          Written in #{@language}.
 
     #divider
 

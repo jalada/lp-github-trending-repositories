@@ -1,17 +1,32 @@
 require 'bundler'
 Bundler.require
+
 require 'sinatra/reloader' if settings.development?
+$stdout.sync = true if settings.development?
 
 set :haml, format: :html5
-#cache = Dalli::Client.new
-
 trending_page = "https://github.com/trending"
+
+#use ExceptionNotification::Rack,
+#  :email => {
+#    :email_prefix => "[Gitub Trending Repositories] ",
+#    :sender_address => %{"notifier" <notifier@protane.co.uk>},
+#    :exception_recipients => %w{david@protane.co.uk},
+#    :smtp_settings => {
+#      :address => ENV["SMTP_SERVER"],
+#      :port => ENV["SMTP_PORT"],
+#      :user_name => ENV["SENDGRID_USERNAME"] || ENV["SMTP_USERNAME"],
+#      :password  => ENV["SENDGRID_PASSWORD"] || ENV["SMTP_PASSWORD"],
+#      :domain => ENV["SMTP_DOMAIN"],
+#      :authentication => :plain,
+#      :enable_starttls_auto => true
+#    }
+#  }
 
 # Prepares and returns this edition of the publication
 # == Returns:
 # HTML/CSS edition with etag. This publication changes the greeting depending
 # on the time of day. It is using UTC to determine the greeting.
-#
 get '/edition/?' do
 
   response = Typhoeus::Request.get trending_page
@@ -33,7 +48,7 @@ get '/edition/?' do
   @forks = repo.forks_count
   @description = block.at_css("p.repo-leaderboard-description").text
   @description = @description.match(/[.!]$/) ? @description : @description + "."
-  @language = block.at_css("span.title-meta").text
+  @language = block.at_css("span.title-meta").text rescue nil
 
   etag Digest::MD5.hexdigest(settings.development? ? Time.now.to_s : "#{@owner}/#{@repo}")
   haml :trending_repository
