@@ -46,7 +46,7 @@ get '/edition/?' do
 
   @stars = repo.watchers
   @forks = repo.forks_count
-  @description = block.at_css("p.repo-leaderboard-description").text
+  @description = block.at_css("p.repo-leaderboard-description").text rescue ""
   @description = @description.match(/[.!]$/) ? @description : @description + "."
   @language = block.at_css("span.title-meta").text rescue nil
 
