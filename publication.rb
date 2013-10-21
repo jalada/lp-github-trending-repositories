@@ -75,6 +75,10 @@ get '/sample/?' do
   haml :trending_repository
 end
 
+get '/exception' do
+  raise "Test exception"
+end
+
 get '/application.css' do
   sass :style
 end
