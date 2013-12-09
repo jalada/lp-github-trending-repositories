@@ -7,22 +7,6 @@ $stdout.sync = true if settings.development?
 set :haml, format: :html5
 trending_page = "https://github.com/trending"
 
-#use ExceptionNotification::Rack,
-#  :email => {
-#    :email_prefix => "[Gitub Trending Repositories] ",
-#    :sender_address => %{"notifier" <notifier@protane.co.uk>},
-#    :exception_recipients => %w{david@protane.co.uk},
-#    :smtp_settings => {
-#      :address => ENV["SMTP_SERVER"],
-#      :port => ENV["SMTP_PORT"],
-#      :user_name => ENV["SENDGRID_USERNAME"] || ENV["SMTP_USERNAME"],
-#      :password  => ENV["SENDGRID_PASSWORD"] || ENV["SMTP_PASSWORD"],
-#      :domain => ENV["SMTP_DOMAIN"],
-#      :authentication => :plain,
-#      :enable_starttls_auto => true
-#    }
-#  }
-
 # Prepares and returns this edition of the publication
 # == Returns:
 # HTML/CSS edition with etag. This publication changes the greeting depending
@@ -42,7 +26,9 @@ get '/edition/?' do
   @owner = owner_and_repo.first
   @repository = owner_and_repo.last
 
-  repo = Octokit.repo("#{@owner}/#{@repository}")
+  client = Octokit::Client.new access_token: ENV["TOKEN"]
+
+  repo = client.repo("#{@owner}/#{@repository}")
 
   @stars = repo.watchers
   @forks = repo.forks_count
@@ -73,10 +59,6 @@ get '/sample/?' do
   @language = "JavaScript"
 
   haml :trending_repository
-end
-
-get '/exception' do
-  raise "Test exception"
 end
 
 get '/application.css' do

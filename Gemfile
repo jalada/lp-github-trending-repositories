@@ -10,9 +10,7 @@ gem 'sass'
 gem 'typhoeus'
 gem 'octokit'
 gem 'activesupport', require: 'active_support/core_ext'
-gem 'exception_notification'
 
 group :development do
   gem 'sinatra-reloader', require: 'sinatra/reloader'
-  gem 'mailcatcher'
 end
