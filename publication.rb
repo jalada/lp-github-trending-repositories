@@ -16,6 +16,8 @@ get '/edition/?' do
   response = Typhoeus::Request.get trending_page
   if response.success?
     html = response.body
+  else
+    raise "Failed to get trending page"
   end
 
   page = Nokogiri::HTML.parse(html)
