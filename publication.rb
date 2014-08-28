@@ -22,11 +22,11 @@ get '/edition/?' do
 
   page = Nokogiri::HTML.parse(html)
 
-  block = page.at_css("li.leaderboard-list-item")
-  owner_and_repo = block.at_css("a.repository-name").text.split("/")
+  block = page.at_css("li.repo-list-item")
+  owner_and_repo = block.at_css("h3.repo-list-name").text.split("/")
 
-  @owner = owner_and_repo.first
-  @repository = owner_and_repo.last
+  @owner = owner_and_repo.first.strip
+  @repository = owner_and_repo.last.strip
 
   client = Octokit::Client.new access_token: ENV["TOKEN"]
 
@@ -34,9 +34,12 @@ get '/edition/?' do
 
   @stars = repo.watchers
   @forks = repo.forks_count
-  @description = block.at_css("p.repo-leaderboard-description").text rescue ""
+  @description = block.at_css("p.repo-list-description").text rescue ""
   @description = @description.match(/[.!]$/) ? @description : @description + "."
-  @language = block.at_css("span.title-meta").text rescue nil
+  @language = block.at_css("p.repo-list-meta").text.split("•").first.strip rescue nil
+  if @language and @language.include? 'star'
+    @language = nil
+  end
 
   etag Digest::MD5.hexdigest(settings.development? ? Time.now.to_s : "#{@owner}/#{@repo}")
   haml :trending_repository
